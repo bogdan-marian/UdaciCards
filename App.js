@@ -17,7 +17,12 @@ class HomeScreen extends React.Component {
 
 const TabNavigator = createBottomTabNavigator({
   Home: { screen: HomeScreen },
-  Setting: { screen: AddDeck },
+  NewDeck: { 
+    screen: AddDeck ,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck'
+    }
+  },
 });
 
 export default createAppContainer(TabNavigator);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text ,Button} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import {createDeck} from '../utils/api'
 
@@ -32,7 +32,10 @@ export default class AddDeck extends Component{
           placeholder="Card name: "
           onChangeText = {(title) => this.setState({title})}
         />
-        <SubmitBtn onPress={this.submit} />
+        <Button
+          title="Submit"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
       </View>
     )
   }
