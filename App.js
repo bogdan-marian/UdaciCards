@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import AddDeck from './components/AddDeck';
+import AddEntry from './components/AddEntry';
 import SettingsScreen from './components/SettingsScreen';
 
 
@@ -18,7 +18,7 @@ class HomeScreen extends React.Component {
 const TabNavigator = createBottomTabNavigator({
   Home: { screen: HomeScreen },
   NewDeck: { 
-    screen: AddDeck ,
+    screen: AddEntry ,
     navigationOptions: {
       tabBarLabel: 'Add Deck'
     }
