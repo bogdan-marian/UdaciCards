@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, Text ,Button} from 'react-native'
-import { TextInput } from 'react-native-gesture-handler';
+import { TextInput } from 'react-native-gesture-handler'
 import {submitEntry, removeEntry} from '../utils/api'
+import {connect} from 'react-redux'
+import {addEntry} from '../actions'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -12,7 +14,7 @@ function SubmitBtn ({ onPress }) {
   )
 }
 
-export default class AddEntry extends Component{
+class AddEntry extends Component{
   state = {
     title: 'New Deck',
     questions: []
@@ -21,6 +23,12 @@ export default class AddEntry extends Component{
   submit = () => {
     const key = this.state.title
     const deck = this.state
+
+    this.props.dispatch(addEntry)
+
+    this.setState(() => ({
+      title:'new deck'
+    }))
 
     // Navigate to home
 
@@ -54,3 +62,5 @@ export default class AddEntry extends Component{
     )
   }
 }
+
+export default connect()(AddEntry)
