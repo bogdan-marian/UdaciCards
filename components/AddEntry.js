@@ -41,6 +41,9 @@ class AddEntry extends Component{
     const key = this.state.title
 
     //update Redux
+    this.props.dispatch(addEntry({
+      [key]:'new deck'
+    }))
 
     //Route to Home
 
@@ -56,11 +59,18 @@ class AddEntry extends Component{
         />
         <Button
           title="Submit"
-          onPress={() => this.props.navigation.navigate('Home')}
+          //onPress={() => this.props.navigation.navigate('Home')}
+          onPress={this.submit}
         />
       </View>
     )
   }
 }
 
-export default connect()(AddEntry)
+function mapStateToProps({}){
+  return{
+
+  }
+}
+
+export default connect(mapStateToProps)(AddEntry)
