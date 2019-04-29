@@ -15,30 +15,29 @@ function SubmitBtn ({ onPress }) {
 }
 
 class AddEntry extends Component{
-  state = {
-    title: 'New Deck',
-    questions: []
-  }
-
+  
   submit = () => {
-    const key = this.state.title
-    const deck = this.state
+    const key = 1
+    const entry = this.state
 
-    this.props.dispatch(addEntry)
+    this.props.dispatch(addEntry({
+      [key]:entry
+    }))
 
     this.setState(() => ({
-      title:'new deck'
+      deckTitle:'new deck',
+      questions:[]
     }))
 
     // Navigate to home
 
-    submitEntry({key, deck})
+    submitEntry({key, entry})
 
     // Clear local notification
   }
 
   reset = () => {
-    const key = this.state.title
+    const key = 1
 
     //update Redux
     this.props.dispatch(addEntry({
@@ -52,24 +51,24 @@ class AddEntry extends Component{
 
   render(){
     return(
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flexDirection: 'column',  alignItems: 'center' }}>
+        <Text style={{paddingTop:50}} >New deck: {this.props.state}</Text>
         <TextInput 
           placeholder="Card name: "
           onChangeText = {(title) => this.setState({title})}
         />
-        <Button
-          title="Submit"
-          //onPress={() => this.props.navigation.navigate('Home')}
-          onPress={this.submit}
-        />
+        
+        <SubmitBtn onPress={this.submit}/>
       </View>
     )
   }
 }
 
-function mapStateToProps({}){
-  return{
+function mapStateToProps(state){
+  const key = 1
 
+  return{
+    
   }
 }
 

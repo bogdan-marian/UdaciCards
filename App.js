@@ -8,26 +8,16 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 
 
-class HomeScreen extends React.Component {
+export default class App extends React.Component {
+
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Home deck screen</Text>
+        <View>
+          <AddEntry />
         </View>
       </Provider>
     )
   }
 }
-
-const TabNavigator = createBottomTabNavigator({
-  Home: { screen: HomeScreen },
-  NewDeck: {
-    screen: AddEntry,
-    navigationOptions: {
-      tabBarLabel: 'Add Deck'
-    }
-  },
-});
-
-export default createAppContainer(TabNavigator);
