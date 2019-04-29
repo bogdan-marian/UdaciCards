@@ -1,37 +1,37 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text ,Button} from 'react-native'
+import { View, TouchableOpacity, Text, Button } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import {submitEntry, removeEntry} from '../utils/api'
-import {connect} from 'react-redux'
-import {addEntry} from '../actions'
+import { submitEntry, removeEntry } from '../utils/api'
+import { connect } from 'react-redux'
+import { addEntry } from '../actions'
 
-function SubmitBtn ({ onPress }) {
+function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
       onPress={onPress}>
-        <Text>SUBMIT</Text>
+      <Text>SUBMIT</Text>
     </TouchableOpacity>
   )
 }
 
-class AddEntry extends Component{
-  
+class AddEntry extends Component {
+
   submit = () => {
     const key = 1
     const entry = this.state
 
     this.props.dispatch(addEntry({
-      [key]:entry
+      [key]: entry
     }))
 
     this.setState(() => ({
-      deckTitle:'new deck',
-      questions:[]
+      deckTitle: 'new deck',
+      questions: []
     }))
 
     // Navigate to home
 
-    submitEntry({key, entry})
+    submitEntry({ key, entry })
 
     // Clear local notification
   }
@@ -41,7 +41,7 @@ class AddEntry extends Component{
 
     //update Redux
     this.props.dispatch(addEntry({
-      [key]:'new deck'
+      [key]: 'new deck'
     }))
 
     //Route to Home
@@ -49,26 +49,33 @@ class AddEntry extends Component{
     removeEntry(key)
   }
 
-  render(){
-    return(
-      <View style={{ flexDirection: 'column',  alignItems: 'center' }}>
-        <Text style={{paddingTop:50}} >New deck: {this.props.state}</Text>
-        <TextInput 
-          placeholder="Card name: "
-          onChangeText = {(title) => this.setState({title})}
-        />
-        
-        <SubmitBtn onPress={this.submit}/>
-      </View>
-    )
+  render() {
+
+    if (this.props.weeHaveData) {
+      return (
+        <Text style={{ paddingTop: 50 }} >Wee have data {this.props.state}</Text>
+      )
+    } else {
+      return (
+        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+          <Text style={{ paddingTop: 50 }} >New deck: {this.props.state}</Text>
+          <TextInput
+            placeholder="Card name: "
+            onChangeText={(title) => this.setState({ title })}
+          />
+
+          <SubmitBtn onPress={this.submit} />
+        </View>
+      )
+    }
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   const key = 1
 
-  return{
-    
+  return {
+    weeHaveData: state[key]
   }
 }
 
