@@ -15,6 +15,9 @@ function SubmitBtn({ onPress }) {
 }
 
 class AddEntry extends Component {
+  state = {
+    title: ''
+  }
 
   submit = () => {
     const key = 1
@@ -65,6 +68,9 @@ class AddEntry extends Component {
           />
 
           <SubmitBtn onPress={this.submit} />
+          <Text>
+            Deck name: {this.state.title}
+          </Text>
         </View>
       )
     }
