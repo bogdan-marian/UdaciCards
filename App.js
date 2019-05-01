@@ -2,22 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator, createAppContainer, StackNavigator } from 'react-navigation';
 import AddEntry from './components/AddEntry';
-import Decks from './components/Decks'
+import DecksScreen from './components/DecksScreen'
 import HelloScreen from './components/HelloScreen'
 import HelloSecondScreen from './components/HelloSecondScreen'
-import HomeScreen from './components/HomeScreen'
+import DeckCreateScreen from './components/DeckCreateScreen'
 import SettingsScreen from './components/SettingsScreen';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 
 
-const HelloNavigator = createStackNavigator({
-  Hello: HelloScreen,
-  HelloSecond: HelloSecondScreen
+const UdacyNavigator = createStackNavigator({
+  Decks: DecksScreen,
 })
 
-HelloNavigator.navigationOptions = ({ navigation }) => {
+UdacyNavigator.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -29,11 +28,11 @@ HelloNavigator.navigationOptions = ({ navigation }) => {
 }
 
 const AppNavigator = createBottomTabNavigator({
-  Home: { screen: HelloNavigator },
+  Home: { screen: UdacyNavigator },
   NewDeck: {
-    screen: HomeScreen,
+    screen: createStackNavigator({ DeckCreate: DeckCreateScreen }),
     navigationOptions: {
-      tabBarLabel: 'Home again Deck'
+      tabBarLabel: 'New Deck'
     }
   },
 })

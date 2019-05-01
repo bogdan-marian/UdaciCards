@@ -6,6 +6,8 @@ class HelloSecondScreen extends Component {
     tabBarVisible: false,
   };
 
+
+
   render() {
     return (
       <View >

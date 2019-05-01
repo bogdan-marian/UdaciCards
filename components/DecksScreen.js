@@ -2,10 +2,15 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-class Decks extends Component {
+class DecksScreen extends Component {
+
+  static navigationOptions = {
+    title: 'Udaci Cards',
+  };
+
   render() {
     return (
-      <View style={{ paddingTop: 20 }}>
+      <View >
         <Text>
           Hello from Decks component
         </Text>
@@ -23,4 +28,4 @@ function mapStateToProps({ entries }) {
   }
 }
 
-export default connect(mapStateToProps)(Decks)
+export default connect(mapStateToProps)(DecksScreen)
