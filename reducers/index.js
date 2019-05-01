@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
-import entries from './entries'
+import questions from './questions'
+import decks from './decks'
 
 export default combineReducers({
-  entries
+  questions,
+  decks
 })

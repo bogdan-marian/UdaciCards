@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Text, Button } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { submitEntry, removeEntry } from '../utils/api'
 import { connect } from 'react-redux'
-import { addEntry } from '../actions'
 
 function SubmitBtn({ onPress }) {
   return (
@@ -23,9 +22,9 @@ class AddEntry extends Component {
     const key = 1
     const entry = this.state
 
-    this.props.dispatch(addEntry({
-      [key]: entry
-    }))
+    // this.props.dispatch(addEntry({
+    //   [key]: entry
+    // }))
 
     this.setState(() => ({
       deckTitle: 'new deck',

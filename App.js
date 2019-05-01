@@ -8,9 +8,15 @@ import HelloSecondScreen from './components/HelloSecondScreen'
 import DeckCreateScreen from './components/DeckCreateScreen'
 import SettingsScreen from './components/SettingsScreen';
 import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import reducer from './reducers'
+import {handleInitialData} from './actions/shared'
+import middleware from './middleware'
 
+const HelloNavigator = createStackNavigator({
+  Hello: HelloScreen,
+  Second: HelloScreen
+})
 
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
@@ -37,14 +43,23 @@ const AppNavigator = createBottomTabNavigator({
   },
 })
 
-const RotNavigator = createAppContainer(AppNavigator)
+const RotNavigator = createAppContainer(HelloNavigator)
 
-export default class App extends React.Component {
+const store = createStore(reducer, middleware)
+
+class App extends React.Component {
+  componentDidMount(){
+    store.dispatch(handleInitialData())
+  }
+
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <RotNavigator />
       </Provider>
     )
   }
-};
+}
+
+
+export default (App)

@@ -31,11 +31,11 @@ import {
 
 export function getInitialData() {
   return Promise.all([
-    _getUsers(),
+    _getDecks(),
     _getQuestions(),
-  ]).then(([decks, quetions]) => ({
+  ]).then(([decks, questions ]) => ({
     decks,
-    quetions
+    questions
   }))
 }
 

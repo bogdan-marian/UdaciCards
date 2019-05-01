@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
-import { submitEntry, hackGetAll } from '../utils/api'
+import {  } from '../utils/api'
 
 class DeckCreateScreen extends Component {
   state = {
@@ -26,7 +26,7 @@ class DeckCreateScreen extends Component {
       questions: []
     }
 
-    submitEntry({ key, entry })
+    //submitEntry({ key, entry })
 
     this.setState(() => ({
       key: '',
@@ -37,7 +37,7 @@ class DeckCreateScreen extends Component {
 
   render() {
     let entries = this.props.entries
-    let hackEntries = JSON.stringify(hackGetAll())
+    let hackEntries = 'nothing to hack' //JSON.stringify(hackGetAll())
 
     return (
       <View >
