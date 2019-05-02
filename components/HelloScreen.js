@@ -13,9 +13,8 @@ class HelloScreen extends Component {
         <Text >
           Hello from simple HELLO
         </Text>
-        <View>
+        <View >
           <Button 
-          
           title="Go to seccond hello"
           onPress={()=> this.props.navigation.navigate('Second')}
         />

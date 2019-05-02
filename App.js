@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator, createAppContainer, StackNavigator } from 'react-navigation';
 import AddEntry from './components/AddEntry';
 import DecksScreen from './components/DecksScreen'
+import DeckScreen from './components/DeckScreen'
 import HelloScreen from './components/HelloScreen'
 import HelloSecondScreen from './components/HelloSecondScreen'
 import DeckCreateScreen from './components/DeckCreateScreen'
@@ -14,12 +15,12 @@ import {handleInitialData} from './actions/shared'
 import middleware from './middleware'
 
 const HelloNavigator = createStackNavigator({
-  Hello: HelloScreen,
-  Second: HelloScreen
+  Hello: HelloScreen
 })
 
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
+  Deck: DeckScreen
 })
 
 UdacyNavigator.navigationOptions = ({ navigation }) => {
@@ -43,7 +44,7 @@ const AppNavigator = createBottomTabNavigator({
   },
 })
 
-const RotNavigator = createAppContainer(HelloNavigator)
+const RotNavigator = createAppContainer(AppNavigator)
 
 const store = createStore(reducer, middleware)
 
@@ -60,6 +61,5 @@ class App extends React.Component {
     )
   }
 }
-
 
 export default (App)
