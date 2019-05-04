@@ -14,6 +14,13 @@ class DeckCreateScreen extends Component {
     title: 'Create new deck',
   };
 
+  componentDidUpdate() {
+    const { navigate } = this.props.navigation
+    if (this.state.timeToNavigate) {
+      navigate('Decks')
+    }
+  }
+
   stripSpaces(value) {
     return value.replace(/\s/g, '');
   }
@@ -26,7 +33,7 @@ class DeckCreateScreen extends Component {
 
 
     //submitEntry({ key, entry })
-    if (title !== undefined || title !== '') {
+    if (this.state.title ) {
       this.setState(() => ({
         key: '',
         title: '',
@@ -67,12 +74,6 @@ class DeckCreateScreen extends Component {
     )
   }
 
-  componentDidUpdate(){
-    const {navigate} = this.props.navigation
-    if (this.state.timeToNavigate === true){
-      navigate('Decks')
-    }
-  }
 }
 
 function mapStateToProps() {

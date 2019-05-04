@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 
 export const DECKS_STORAGE_KEY = 'UdaciCards:decks'
+export const QUESTIONS_STORAGE_KEY = 'UdaciCards:questions'
 
 
 function generateUID() {
@@ -50,13 +51,11 @@ export function _getDecks() {
         .then((results) => {
           let decks = JSON.parse(results)
           if (decks) {
-            console.log("wee have data: " + JSON.stringify(decks))
-            res ({...decks})
+            res({ ...decks })
           } else {
-            console.log("no data: " + JSON.stringify(decks))
             decks = initialDecks
             AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
-            res ({...decks})
+            res({ ...decks })
           }
         })
     }, 500)
@@ -65,12 +64,27 @@ export function _getDecks() {
 
 export function _getQuestions() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...questions }), 500)
+    setTimeout(() => {
+      AsyncStorage.getItem(QUESTIONS_STORAGE_KEY)
+        .then((results) => {
+          let questions = JSON.parse(results)
+          if (questions) {
+            console.log("wee have data: " + JSON.stringify(questions))
+            res({ ...questions })
+          } else {
+            console.log("no data: " + JSON.stringify(questions))
+            questions = initialQuestions
+            AsyncStorage.setItem(QUESTIONS_STORAGE_KEY, JSON.stringify(questions))
+            res({ ...questions })
+          }
+        })
+    }, 500)
   })
 }
 
 function formatQuestion({ questionText, answer, deck }) {
 
+  console.log("formatQuestion: => " + questionText +"/" + answer+ "/" + deck )
 
   const myQuestion = {
     id: generateUID(),
@@ -83,23 +97,43 @@ function formatQuestion({ questionText, answer, deck }) {
 
 export function _saveQuestion(question) {
   return new Promise((res, rej) => {
-    const deck = question.deck;
     const formattedQuestion = formatQuestion(question);
+    let key = formattedQuestion.id
+
     setTimeout(() => {
-      questions = {
-        ...questions,
-        [formattedQuestion.id]: formattedQuestion
-      }
+      //stadnard redux
+      // questions = {
+      //   ...questions,
+      //   [formattedQuestion.id]: formattedQuestion
+      // }
 
-      decks = {
-        ...decks,
-        [deck]: {
-          ...decks[deck],
-          questions: decks[deck].questions.concat([formattedQuestion.id])
-        }
-      }
+      // decks = {
+      //   ...decks,
+      //   [deck]: {
+      //     ...decks[deck],
+      //     questions: decks[deck].questions.concat([formattedQuestion.id])
+      //   }
+      // }
+      // res(formattedQuestion)
 
-      res(formattedQuestion)
+      //AsynStorage
+      // AsyncStorage.mergeItem(QUESTIONS_STORAGE_KEY, JSON.stringify({
+      //   [key]: formattedQuestion
+      // }))
+      let decks = undefined
+      AsyncStorage.getItem(DECKS_STORAGE_KEY)
+        .then((results) => {
+          decks = JSON.parse(results)
+          console.log("_saveQuestion1: " + decks)
+          console.log("_saveQuestion2: " + JSON.stringify(decks))
+          console.log("_saveQuestion3: " + formattedQuestion.deck)
+          console.log("_saveQuestion4: " + decks[formattedQuestion.deck] )
+          decks[formattedQuestion.deck].questions.push(formattedQuestion.id)
+        })
+        .then(()=>{
+          AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+        })
+        .then(() => { res(formattedQuestion) })
     }, 500)
   })
 }
