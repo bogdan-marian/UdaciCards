@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native'
 export const DECKS_STORAGE_KEY = 'UdaciCards:cards'
 
 
-function generateUID () {
+function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
@@ -21,39 +21,39 @@ let decks = {
 }
 
 let questions = {
-  "question1":{
-    id:'question1',
-    deck:'React',
-    questionText:'What is React?',
+  "question1": {
+    id: 'question1',
+    deck: 'React',
+    questionText: 'What is React?',
     answer: 'A library for managin user interfaces'
   },
-  "question2":{
-    id:'question2',
-    deck:'React',
-    questionText:'Where do you make Ajax requests in React?',
+  "question2": {
+    id: 'question2',
+    deck: 'React',
+    questionText: 'Where do you make Ajax requests in React?',
     answer: 'The componentDidMount lifecycle event'
   },
-  "question3":{
-    id:'question3',
-    deck:'JavaScript',
-    questionText:'What is a closure?',
+  "question3": {
+    id: 'question3',
+    deck: 'JavaScript',
+    questionText: 'What is a closure?',
     answer: 'The combination of a function and the lexical environment within which that function was declared.'
   },
 }
 
-export function _getDecks(){
+export function _getDecks() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({...decks}), 1000)
+    setTimeout(() => res({ ...decks }), 1000)
   })
 }
 
-export function _getQuestions () {
+export function _getQuestions() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({...questions}), 1000)
+    setTimeout(() => res({ ...questions }), 1000)
   })
 }
 
-function formatQuestion ({ questionText, answer,deck }) {
+function formatQuestion({ questionText, answer, deck }) {
   console.log("formatQuestion")
   console.log(questionText)
   console.log(answer)
@@ -69,7 +69,7 @@ function formatQuestion ({ questionText, answer,deck }) {
   return myQuestion
 }
 
-export function _saveQuestion (question) {
+export function _saveQuestion(question) {
   return new Promise((res, rej) => {
     const deck = question.deck;
     const formattedQuestion = formatQuestion(question);
@@ -78,7 +78,7 @@ export function _saveQuestion (question) {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
       }
-      
+
       decks = {
         ...decks,
         [deck]: {
@@ -88,6 +88,28 @@ export function _saveQuestion (question) {
       }
 
       res(formattedQuestion)
+    }, 1000)
+  })
+}
+
+export function formatDeck({ title }) {
+  const myDeck = {
+    id: generateUID(),
+    title,
+    questions: []
+  }
+  return myDeck
+}
+
+export function _saveDeck(deck) {
+  return new Promise((res, rej) => {
+    const formattedDeck = formatDeck(deck);
+    setTimeout(() => {
+      deck = {
+        ...decks,
+        [formatDeck.id]: formatDeck
+      }
+      res(formattedDeck)
     }, 1000)
   })
 }

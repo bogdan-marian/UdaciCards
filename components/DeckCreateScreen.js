@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
-import {  } from '../utils/api'
+import {handleAddQuestion} from '../actions/decks'
 
 class DeckCreateScreen extends Component {
   state = {
@@ -21,10 +21,8 @@ class DeckCreateScreen extends Component {
     const { key, title } = this.state
     const { dispatch } = this.props
 
-    const entry = {
-      deckTitle: title,
-      questions: []
-    }
+    dispatch(handleAddQuestion(title))
+
 
     //submitEntry({ key, entry })
 

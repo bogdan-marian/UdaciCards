@@ -24,6 +24,7 @@ import { DECKS_STORAGE_KEY } from './_data'
 
 import {
   _getDecks,
+  _saveDeck,
   _getQuestions,
   _saveQuestion
 } from './_data.js'
@@ -43,4 +44,9 @@ export function saveQuestion(info) {
   console.log('saveQuestion')
   console.log(info)
   return _saveQuestion(info)
+}
+
+export function saveDeck(info){
+  console.log('saveDeck: ' + info )
+  return _saveDeck(info)
 }
