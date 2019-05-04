@@ -75,9 +75,8 @@ class DeckCreateScreen extends Component {
   }
 }
 
-function mapStateToProps({ entries }) {
+function mapStateToProps() {
   return {
-    entries: entries
   }
 }
 
