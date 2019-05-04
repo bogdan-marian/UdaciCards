@@ -57,23 +57,12 @@ class DeckCreateScreen extends Component {
         />
 
         <Button
+          disabled={!this.state.title}
           title="Create New Deck"
           onPress={() => (
             this.handleSubmit()
           )}
         />
-        <Text>
-          New tile is:  {this.state.title}
-        </Text>
-        <Text>
-          New key is: {this.state.key}
-        </Text>
-        <Text>
-          All entries: {JSON.stringify(entries)}
-        </Text>
-        <Text>
-          Hack entries: {hackEntries}
-        </Text>
       </View>
     )
   }
