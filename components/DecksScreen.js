@@ -26,7 +26,7 @@ class DecksScreen extends Component {
       <View style={styles.container} >
 
 
-        <Text>Total number of kecks: {myDecks.length}</Text>
+        <Text>Total number of decks: {myDecks.length}</Text>
         <FlatList
           data={myDecks}
           keyExtractor={item => item.id}

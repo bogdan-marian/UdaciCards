@@ -43,13 +43,13 @@ let questions = {
 
 export function _getDecks() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...decks }), 1000)
+    setTimeout(() => res({ ...decks }), 500)
   })
 }
 
 export function _getQuestions() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...questions }), 1000)
+    setTimeout(() => res({ ...questions }), 500)
   })
 }
 
@@ -88,7 +88,7 @@ export function _saveQuestion(question) {
       }
 
       res(formattedQuestion)
-    }, 1000)
+    }, 500)
   })
 }
 
@@ -110,6 +110,6 @@ export function _saveDeck(deck) {
         [formatDeck.id]: formatDeck
       }
       res(formattedDeck)
-    }, 1000)
+    }, 500)
   })
 }

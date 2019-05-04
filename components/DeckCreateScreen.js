@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
-import {handleAddQuestion} from '../actions/decks'
+import { handleAddQuestion } from '../actions/decks'
 
 class DeckCreateScreen extends Component {
   state = {
     key: '',
-    title: ''
+    title: '',
+    timeToNavigate: false
   }
 
   static navigationOptions = {
@@ -25,15 +26,19 @@ class DeckCreateScreen extends Component {
 
 
     //submitEntry({ key, entry })
-
-    this.setState(() => ({
-      key: '',
-      title: ''
-    }))
-
+    if (title !== undefined || title !== '') {
+      this.setState(() => ({
+        key: '',
+        title: '',
+        timeToNavigate: true
+      }))
+    }
   }
 
   render() {
+
+
+
     let entries = this.props.entries
     let hackEntries = 'nothing to hack' //JSON.stringify(hackGetAll())
 
@@ -44,14 +49,15 @@ class DeckCreateScreen extends Component {
         </Text>
         <TextInput
           placeholder="No name"
+          defaultValue={this.state.title}
           onChangeText={(title) => {
             key = this.stripSpaces(title)
-            this.setState({ title, key })
+            this.setState({ title, key, timeToNavigate: false })
           }}
         />
 
         <Button
-          title="Go to Home"
+          title="Create New Deck"
           onPress={() => (
             this.handleSubmit()
           )}
@@ -70,6 +76,13 @@ class DeckCreateScreen extends Component {
         </Text>
       </View>
     )
+  }
+
+  componentDidUpdate(){
+    const {navigate} = this.props.navigation
+    if (this.state.timeToNavigate === true){
+      navigate('Decks')
+    }
   }
 }
 

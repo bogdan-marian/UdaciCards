@@ -7,11 +7,11 @@ import DeckScreen from './components/DeckScreen'
 import HelloScreen from './components/HelloScreen'
 import HelloSecondScreen from './components/HelloSecondScreen'
 import DeckCreateScreen from './components/DeckCreateScreen'
-import SettingsScreen from './components/SettingsScreen';
+import QuestionCreateScreen from './components/QuestionCreateScreen'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 import reducer from './reducers'
-import {handleInitialData} from './actions/shared'
+import { handleInitialData } from './actions/shared'
 import middleware from './middleware'
 
 const HelloNavigator = createStackNavigator({
@@ -20,7 +20,8 @@ const HelloNavigator = createStackNavigator({
 
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
-  Deck: DeckScreen
+  Deck: DeckScreen,
+  QuestionCreate: QuestionCreateScreen
 })
 
 UdacyNavigator.navigationOptions = ({ navigation }) => {
@@ -49,7 +50,7 @@ const RotNavigator = createAppContainer(AppNavigator)
 const store = createStore(reducer, middleware)
 
 class App extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     store.dispatch(handleInitialData())
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 
 class DeckScreen extends Component {
@@ -13,6 +13,10 @@ class DeckScreen extends Component {
       <View>
         <Text>Hello deck {deck['title']}</Text>
         <Text>{deck['questions'].length} cards</Text>
+        <Button
+          title="Add Card"
+          onPress={()=> navigation.navigate('QuestionCreate',{ deckId:deck['id']})}
+        />
       </View>
     )
   }
