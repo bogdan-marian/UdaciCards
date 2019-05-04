@@ -1,18 +1,27 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
 
-class DeckScreen extends Component{
-  render(){
+class DeckScreen extends Component {
+  render() {
 
     const { navigation } = this.props;
-    const item =navigation.getParam('item')
+    const item = navigation.getParam('item')
+    const deck = this.props.decks[item['id']]
 
     return (
       <View>
-        <Text>Hello deck {item['title'] }</Text>
+        <Text>Hello deck {deck['title']}</Text>
+        <Text>{deck['questions'].length} cards</Text>
       </View>
     )
   }
 }
 
-export default DeckScreen
+function mapStateToProps({ decks }) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckScreen)
