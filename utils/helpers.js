@@ -24,3 +24,7 @@ export function getDeckMetaInfo(metaInfo) {
     ? info
     : info[metaInfo]
 }
+
+export function generateUID() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}

@@ -17,12 +17,13 @@ function addQuestion(question) {
   }
 }
 
-export function handleAddQuestion(deck, questionText, answer) {
+export function handleAddQuestion(deck, questionText, answer, id) {
   return (dispatch, getState) => {
     return saveQuestion({
       questionText,
       answer,
-      deck
+      deck,
+      id
     })
       .then((question) => dispatch(addQuestion(question)))
   }

@@ -2,30 +2,24 @@ import { AsyncStorage } from 'react-native'
 
 export const DECKS_STORAGE_KEY = 'UdaciCards:decks'
 export const QUESTIONS_STORAGE_KEY = 'UdaciCards:questions'
+import { generateUID } from './helpers'
 
 
-function generateUID() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
 
 let initialDecks = {
   React: {
     id: 'React',
     title: 'React',
-    totalQuestions:2,
+    totalQuestions: 2,
     questions: ['question1', 'question2']
   },
   JavaScript: {
     id: 'JavaScript',
     title: 'JavaScript',
-    totalQuestions:1,
+    totalQuestions: 1,
     questions: ['question3',]
   }
 }
-
-let decks = undefined
-
-let questions = undefined
 
 let initialQuestions = {
   "question1": {
@@ -53,7 +47,7 @@ export function _getDecks() {
     setTimeout(() => {
       AsyncStorage.getItem(DECKS_STORAGE_KEY)
         .then((results) => {
-          decks = JSON.parse(results)
+          let decks = JSON.parse(results)
           if (decks) {
             res({ ...decks })
           } else {
@@ -71,7 +65,7 @@ export function _getQuestions() {
     setTimeout(() => {
       AsyncStorage.getItem(QUESTIONS_STORAGE_KEY)
         .then((results) => {
-          questions = JSON.parse(results)
+          let questions = JSON.parse(results)
           if (questions) {
             res({ ...questions })
           } else {
@@ -84,9 +78,9 @@ export function _getQuestions() {
   })
 }
 
-function formatQuestion({ questionText, answer, deck }) {
+function formatQuestion({ questionText, answer, deck, id }) {
   const myQuestion = {
-    id: generateUID(),
+    id,
     deck,
     questionText,
     answer
@@ -94,70 +88,55 @@ function formatQuestion({ questionText, answer, deck }) {
   return myQuestion
 }
 
-export function _saveQuestion(question) {
+export function _saveNewQuestion(question) {
   return new Promise((res, rej) => {
-    const formattedQuestion = formatQuestion(question);
+    let formattedQuestion = formatQuestion(question);
     let key = formattedQuestion.id
-
     setTimeout(() => {
-      //stadnard redux
-      questions = {
-        ...questions,
-        [formattedQuestion.id]: formattedQuestion
-      }
-
-      id = formattedQuestion.deck
-      console.log(JSON.stringify(decks))
-      console.log(JSON.stringify(id))
-
-      decks = {
-        ...decks,
-        [id]: {
-          ...decks[id],
-          questions: decks[id].questions.concat([formattedQuestion.id])
-        }
-      }
-      
-      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+      AsyncStorage.mergeItem(QUESTIONS_STORAGE_KEY, JSON.stringify({
+        [key]: formattedQuestion
+      }))
       res(formattedQuestion)
     }, 500)
   })
 }
 
-export function formatDeck({ title }) {
+function newDeckObject({ title }) {
   const myDeck = {
     id: generateUID(),
     title,
-    totalQuestions:0,
+    totalQuestions: 0,
     questions: []
   }
   return myDeck
 }
 
-export function _saveDeck(deck) {
+export function _saveNewDeck(deck) {
   //standard redux
   return new Promise((res, rej) => {
-    const formattedDeck = formatDeck(deck);
+    const formattedDeck = newDeckObject(deck);
+    let { id } = formattedDeck
     setTimeout(() => {
-      deck = {
-        ...decks,
-        [formatDeck.id]: formatDeck
-      }
-      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+      AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+        [id]: formattedDeck
+      }))
       res(formattedDeck)
     }, 500)
   })
-
-  //asynck storage reudx
-  // return new Promise((res, rej) => {
-  //   const formattedDeck = formatDeck(deck);
-  //   const key = formattedDeck.id
-  //   setTimeout(() => {
-  //     AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
-  //       [key]: formattedDeck
-  //     })).then(() => {
-  //       res(formattedDeck)
-  //     })
-  //   }, 500)
-  // })
 }
+
+export function _updateDeck(data) {
+  const { deckId, questionId } = data
+  console.log("_updateDeck: " + deckId + "/" + questionId)
+  return new Promise((res, rej) => {
+    AsyncStorage.getItem(DECKS_STORAGE_KEY)
+      .then((results) => {
+        const data = JSON.parse(results)
+        console.log("_updateDeckResults: " + JSON.stringify(data[deckId].questions))
+        data[deckId].questions.concat([questionId])
+        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
+      })
+      res(data)
+  })
+}
+

@@ -23,26 +23,32 @@
 
 import {
   _getDecks,
-  _saveDeck,
+  _saveNewDeck,
   _getQuestions,
-  _saveQuestion
+  _saveNewQuestion,
+  _updateDeck
 } from './_data.js'
+
 
 
 export function getInitialData() {
   return Promise.all([
     _getDecks(),
     _getQuestions(),
-  ]).then(([decks, questions ]) => ({
+  ]).then(([decks, questions]) => ({
     decks,
     questions
   }))
 }
 
 export function saveQuestion(info) {
-  return _saveQuestion(info)
+  return _saveNewQuestion(info)
 }
 
-export function saveDeck(info){
-  return _saveDeck(info)
+export function saveDeck(info) {
+  return _saveNewDeck(info)
+}
+
+export function updateDeck(info){
+  return _updateDeck(info)
 }

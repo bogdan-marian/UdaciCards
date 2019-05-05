@@ -2,13 +2,24 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
+import { handlDeckAppendQuestionId } from '../actions/decks'
+import { generateUID } from '../utils/helpers'
 
 class QuestionCreateScreen extends Component {
   state = {
-    deckId: this.props.navigation.getParam('deckId'),
+    deckId: this.props.navigation.getParam('deckId', 'JavaScript'),
     questionText: '',
     answer: '',
-    timeToNavigate: false
+    timeToNavigate: false,
+    id: generateUID()
+  }
+
+  wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
   }
 
   canSubmit() {
@@ -22,28 +33,33 @@ class QuestionCreateScreen extends Component {
   componentDidUpdate() {
     const { navigate } = this.props.navigation
     if (this.state.timeToNavigate === true) {
-      let deckId = this.props.navigation.getParam('deckId')
-      const {decks,questions} = this.props
+      let deckId = this.props.navigation.getParam('deckId', 'JavaScript')
+      const { decks, questions } = this.props
       let item = decks[deckId]
-      navigate('Deck',{ item:item})
+      navigate('Deck', { item: item })
     }
   }
 
   handleSubmit = () => {
-    const { deckId, questionText, answer } = this.state
+    const { deckId, questionText, answer, id } = this.state
     const { dispatch } = this.props
+    const questionId = id
 
-    dispatch(handleAddQuestion(deckId, questionText, answer))
+
+    dispatch(handleAddQuestion(deckId, questionText, answer, id))
+    dispatch(handlDeckAppendQuestionId(deckId, questionId))
+
     this.setState(() => ({
       deckId,
       questionText: '',
       answer: '',
+      id: generateUID(),
       timeToNavigate: true
     }))
+
   }
 
   render() {
-    let deckId = this.props.navigation.getParam('deckId')
     return (
       <View>
         <Text>Hello from Create Card</Text>
@@ -52,7 +68,7 @@ class QuestionCreateScreen extends Component {
           placeholder="The question text"
           defaultValue={this.state.questionText}
           onChangeText={(questionText) => {
-            this.setState({questionText})
+            this.setState({ questionText })
           }}
         />
         <Text>Answer</Text>
@@ -60,7 +76,7 @@ class QuestionCreateScreen extends Component {
           placeholder="The correct answer"
           defaultValue={this.state.answer}
           onChangeText={(answer) => {
-            this.setState({answer})
+            this.setState({ answer })
           }}
         />
         <Button
@@ -73,8 +89,7 @@ class QuestionCreateScreen extends Component {
   }
 }
 
-function mapStateToProps({decks,questions}) {
-  console.log("QuestionCreate"+JSON.stringify(decks))
+function mapStateToProps({ decks, questions }) {
   return {
     decks,
     questions

@@ -38,9 +38,7 @@ class DeckScreen extends Component {
 }
 
 function mapStateToProps({ decks }) {
-  console.log("DeckScreen"+JSON.stringify(decks))
   return {
-    
     decks
   }
 }
