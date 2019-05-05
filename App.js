@@ -18,6 +18,8 @@ const HelloNavigator = createStackNavigator({
   Hello: HelloScreen
 })
 
+
+
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
   Deck: DeckScreen,
@@ -37,18 +39,18 @@ UdacyNavigator.navigationOptions = ({ navigation }) => {
 
 const AppNavigator = createBottomTabNavigator({
   Home: { screen: UdacyNavigator },
-  // NewDeck: {
-  //   screen: createStackNavigator({ DeckCreate: DeckCreateScreen }),
+  NewDeck: {
+    screen: createStackNavigator({ DeckCreate: DeckCreateScreen }),
+    navigationOptions: {
+      tabBarLabel: 'New Deck'
+    }
+  }
+  // NewQuestion: {
+  //   screen: createStackNavigator({ NewQuestionCreate: QuestionCreateScreen }),
   //   navigationOptions: {
-  //     tabBarLabel: 'New Deck'
+  //     tabBarLabel: 'New Question'
   //   }
   // },
-  NewQuestion: {
-    screen: createStackNavigator({ NewQuestionCreate: QuestionCreateScreen }),
-    navigationOptions: {
-      tabBarLabel: 'New Question'
-    }
-  },
 })
 
 const RotNavigator = createAppContainer(AppNavigator)

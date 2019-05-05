@@ -7,7 +7,8 @@ import { generateUID } from '../utils/helpers'
 
 class QuestionCreateScreen extends Component {
   state = {
-    deckId: this.props.navigation.getParam('deckId', 'JavaScript'),
+    deckId: this.props.navigation.getParam('deckId'),
+    deckCallBack: this.props.navigation.getParam('deckCallBack'),
     questionText: '',
     answer: '',
     timeToNavigate: false,
@@ -36,6 +37,7 @@ class QuestionCreateScreen extends Component {
       let deckId = this.props.navigation.getParam('deckId', 'JavaScript')
       const { decks, questions } = this.props
       let item = decks[deckId]
+      this.state.deckCallBack()
       navigate('Deck', { item: item })
     }
   }
