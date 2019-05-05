@@ -120,22 +120,6 @@ export function _saveQuestion(question) {
       
       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
       res(formattedQuestion)
-
-      //AsynStorage
-      // AsyncStorage.mergeItem(QUESTIONS_STORAGE_KEY, JSON.stringify({
-      //   [key]: formattedQuestion
-      // }))
-
-      // let decks = undefined
-      // AsyncStorage.getItem(DECKS_STORAGE_KEY)
-      //   .then((results) => {
-      //     decks = JSON.parse(results)
-      //     decks[formattedQuestion.deck].questions.push(formattedQuestion.id)
-      //   })
-      //   .then(()=>{
-      //     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
-      //   })
-      //   .then(() => { res(formattedQuestion) })
     }, 500)
   })
 }
