@@ -11,10 +11,6 @@ export default function questions(state = {}, action) {
         ...action.questions
       }
     case ADD_QUESTION:
-      const {question} = action
-      console.log("Debug line")
-      console.log(action)
-      console.log(question)
       return {
         ...state,
         [action.question.id]: action.question

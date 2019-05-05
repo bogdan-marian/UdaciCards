@@ -12,16 +12,20 @@ let initialDecks = {
   React: {
     id: 'React',
     title: 'React',
+    totalQuestions:2,
     questions: ['question1', 'question2']
   },
   JavaScript: {
     id: 'JavaScript',
     title: 'JavaScript',
+    totalQuestions:1,
     questions: ['question3',]
   }
 }
 
-let questions = {}
+let decks = undefined
+
+let questions = undefined
 
 let initialQuestions = {
   "question1": {
@@ -49,7 +53,7 @@ export function _getDecks() {
     setTimeout(() => {
       AsyncStorage.getItem(DECKS_STORAGE_KEY)
         .then((results) => {
-          let decks = JSON.parse(results)
+          decks = JSON.parse(results)
           if (decks) {
             res({ ...decks })
           } else {
@@ -67,12 +71,10 @@ export function _getQuestions() {
     setTimeout(() => {
       AsyncStorage.getItem(QUESTIONS_STORAGE_KEY)
         .then((results) => {
-          let questions = JSON.parse(results)
+          questions = JSON.parse(results)
           if (questions) {
-            console.log("wee have data: " + JSON.stringify(questions))
             res({ ...questions })
           } else {
-            console.log("no data: " + JSON.stringify(questions))
             questions = initialQuestions
             AsyncStorage.setItem(QUESTIONS_STORAGE_KEY, JSON.stringify(questions))
             res({ ...questions })
@@ -83,9 +85,6 @@ export function _getQuestions() {
 }
 
 function formatQuestion({ questionText, answer, deck }) {
-
-  console.log("formatQuestion: => " + questionText +"/" + answer+ "/" + deck )
-
   const myQuestion = {
     id: generateUID(),
     deck,
@@ -102,38 +101,41 @@ export function _saveQuestion(question) {
 
     setTimeout(() => {
       //stadnard redux
-      // questions = {
-      //   ...questions,
-      //   [formattedQuestion.id]: formattedQuestion
-      // }
+      questions = {
+        ...questions,
+        [formattedQuestion.id]: formattedQuestion
+      }
 
-      // decks = {
-      //   ...decks,
-      //   [deck]: {
-      //     ...decks[deck],
-      //     questions: decks[deck].questions.concat([formattedQuestion.id])
-      //   }
-      // }
-      // res(formattedQuestion)
+      id = formattedQuestion.deck
+      console.log(JSON.stringify(decks))
+      console.log(JSON.stringify(id))
+
+      decks = {
+        ...decks,
+        [id]: {
+          ...decks[id],
+          questions: decks[id].questions.concat([formattedQuestion.id])
+        }
+      }
+      
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+      res(formattedQuestion)
 
       //AsynStorage
       // AsyncStorage.mergeItem(QUESTIONS_STORAGE_KEY, JSON.stringify({
       //   [key]: formattedQuestion
       // }))
-      let decks = undefined
-      AsyncStorage.getItem(DECKS_STORAGE_KEY)
-        .then((results) => {
-          decks = JSON.parse(results)
-          console.log("_saveQuestion1: " + decks)
-          console.log("_saveQuestion2: " + JSON.stringify(decks))
-          console.log("_saveQuestion3: " + formattedQuestion.deck)
-          console.log("_saveQuestion4: " + decks[formattedQuestion.deck] )
-          decks[formattedQuestion.deck].questions.push(formattedQuestion.id)
-        })
-        .then(()=>{
-          AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
-        })
-        .then(() => { res(formattedQuestion) })
+
+      // let decks = undefined
+      // AsyncStorage.getItem(DECKS_STORAGE_KEY)
+      //   .then((results) => {
+      //     decks = JSON.parse(results)
+      //     decks[formattedQuestion.deck].questions.push(formattedQuestion.id)
+      //   })
+      //   .then(()=>{
+      //     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+      //   })
+      //   .then(() => { res(formattedQuestion) })
     }, 500)
   })
 }
@@ -142,6 +144,7 @@ export function formatDeck({ title }) {
   const myDeck = {
     id: generateUID(),
     title,
+    totalQuestions:0,
     questions: []
   }
   return myDeck
@@ -149,27 +152,28 @@ export function formatDeck({ title }) {
 
 export function _saveDeck(deck) {
   //standard redux
-  // return new Promise((res, rej) => {
-  //   const formattedDeck = formatDeck(deck);
-  //   setTimeout(() => {
-  //     deck = {
-  //       ...decks,
-  //       [formatDeck.id]: formatDeck
-  //     }
-  //     res(formattedDeck)
-  //   }, 500)
-  // })
-
-  //asynck storage reudx
   return new Promise((res, rej) => {
     const formattedDeck = formatDeck(deck);
-    const key = formattedDeck.id
     setTimeout(() => {
-      AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
-        [key]: formattedDeck
-      })).then(() => {
-        res(formattedDeck)
-      })
+      deck = {
+        ...decks,
+        [formatDeck.id]: formatDeck
+      }
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+      res(formattedDeck)
     }, 500)
   })
+
+  //asynck storage reudx
+  // return new Promise((res, rej) => {
+  //   const formattedDeck = formatDeck(deck);
+  //   const key = formattedDeck.id
+  //   setTimeout(() => {
+  //     AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+  //       [key]: formattedDeck
+  //     })).then(() => {
+  //       res(formattedDeck)
+  //     })
+  //   }, 500)
+  // })
 }

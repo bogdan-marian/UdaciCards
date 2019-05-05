@@ -26,10 +26,6 @@ class HelloScreen extends Component {
 }
 
 function mapStateToProps({questions, decks}){
-  console.log("running mapStateToProps")
-  console.log( "questions = " + JSON.stringify(questions))
-  console.log("decks = " , decks)
-  console.log("end of mapStateToProps")
   return {
     questions:questions
   }

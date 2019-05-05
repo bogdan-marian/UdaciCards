@@ -23,11 +23,8 @@ class QuestionCreateScreen extends Component {
     const { navigate } = this.props.navigation
     if (this.state.timeToNavigate === true) {
       let deckId = this.props.navigation.getParam('deckId')
-      console.log("QcomponentDidUpdate deckId = " + deckId)
       const {decks,questions} = this.props
-      console.log("QcomponentDidUpdate decks = " + JSON.stringify(this.props))
       let item = decks[deckId]
-      console.log("QcomponentDidUpdate item = " + JSON.stringify(item))
       navigate('Deck',{ item:item})
     }
   }
@@ -77,9 +74,10 @@ class QuestionCreateScreen extends Component {
 }
 
 function mapStateToProps({decks,questions}) {
+  console.log("QuestionCreate"+JSON.stringify(decks))
   return {
-    decks:decks,
-    questions:questions
+    decks,
+    questions
   }
 }
 

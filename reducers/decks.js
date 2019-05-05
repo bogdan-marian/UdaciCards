@@ -8,7 +8,6 @@ export default function users (state = {}, action){
         ...action.decks
       }
     case ADD_DECK:
-      const {deck} = action
       return {
         ...state,
         [action.deck.id]:action.deck

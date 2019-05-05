@@ -19,7 +19,6 @@ function addQuestion(question) {
 
 export function handleAddQuestion(deck, questionText, answer) {
   return (dispatch, getState) => {
-    console.log("handleAddQuestion values " + questionText + answer + deck)
     return saveQuestion({
       questionText,
       answer,

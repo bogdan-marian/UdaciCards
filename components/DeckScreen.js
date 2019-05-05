@@ -3,19 +3,34 @@ import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 
 class DeckScreen extends Component {
+
+  constructor(props){
+    super(props)
+    const item = props.navigation.getParam('item')
+    const deck = props.decks[item['id']]
+
+    const navigation = props.navigation
+    this.state = {
+      deck,
+      navigation:props.navigation
+    }
+  }
+
+  componentDidMount() {
+    this._navListener = this.props.navigation.addListener('didFocus', () => {
+      this.setState({gotFocus:true})
+    });
+  }
+
   render() {
-
-    const { navigation } = this.props;
-    const item = navigation.getParam('item')
-    const deck = this.props.decks[item['id']]
-
+    let {deck, navigation} = this.state
     return (
       <View>
         <Text>Hello deck {deck['title']}</Text>
         <Text>{deck['questions'].length} cards</Text>
         <Button
           title="Add Card"
-          onPress={()=> navigation.navigate('QuestionCreate',{ deckId:deck['id']})}
+          onPress={() => navigation.navigate('QuestionCreate', { deckId: deck['id'] })}
         />
       </View>
     )
@@ -23,7 +38,9 @@ class DeckScreen extends Component {
 }
 
 function mapStateToProps({ decks }) {
+  console.log("DeckScreen"+JSON.stringify(decks))
   return {
+    
     decks
   }
 }
