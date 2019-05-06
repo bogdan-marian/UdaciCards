@@ -31,6 +31,20 @@ class DeckScreen extends Component {
     this.setState({toalCards: totalCards})
   }
 
+  handleStartQuiz (){
+    const { navigate } = this.props.navigation
+    if (this.state.toalCards <= 0){
+      console.log("Please implement navigation to NoQuizAvailable")
+    }else{
+      console.log("Time to navigate")
+      navigate('Quiz',{
+        deckId:'',
+        goodOnes:[],
+        badOnes:[]
+      })
+    }
+  }
+
   render() {
     let {deck, navigation} = this.state
     return (
@@ -42,6 +56,10 @@ class DeckScreen extends Component {
           onPress={() => navigation.navigate('QuestionCreate', { 
             deckId: deck['id'], 
             deckCallBack:this.deckCallBack })}
+        />
+        <Button 
+          title="Start Quiz"
+          onPress={()=>this.handleStartQuiz()}
         />
       </View>
     )

@@ -8,6 +8,7 @@ import HelloScreen from './components/HelloScreen'
 import HelloSecondScreen from './components/HelloSecondScreen'
 import DeckCreateScreen from './components/DeckCreateScreen'
 import QuestionCreateScreen from './components/QuestionCreateScreen'
+import QuizScreen from './components/QuizScreen'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 import reducer from './reducers'
@@ -23,7 +24,8 @@ const HelloNavigator = createStackNavigator({
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
   Deck: DeckScreen,
-  QuestionCreate: QuestionCreateScreen
+  QuestionCreate: QuestionCreateScreen,
+  Quiz: QuizScreen
 })
 
 UdacyNavigator.navigationOptions = ({ navigation }) => {
