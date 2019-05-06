@@ -1,22 +1,374 @@
 {
-  "JavaScript": {
-    "id": "JavaScript",
-    "title": "JavaScript",
-    "totalQuestions": 1,
-    "questions": [
-      "question3",
-      "lne9k4zue3ocn8fumjslw5"
-    ]
+  "questions": {
+    "question1": {
+      "id": "question1",
+      "deck": "React",
+      "questionText": "What is React?",
+      "answer": "A library for managin user interfaces"
+    },
+    "question2": {
+      "id": "question2",
+      "deck": "React",
+      "questionText": "Where do you make Ajax requests in React?",
+      "answer": "The componentDidMount lifecycle event"
+    },
+    "question3": {
+      "id": "question3",
+      "deck": "JavaScript",
+      "questionText": "What is a closure?",
+      "answer": "The combination of a function and the lexical environment within which that function was declared."
+    },
+    "s9bid6fewes5txu2h5r47o": {
+      "id": "s9bid6fewes5txu2h5r47o",
+      "deck": "JavaScript",
+      "questionText": "Yt",
+      "answer": "Hf"
+    },
+    "crfmn7zxaotd28gyy0dapo": {
+      "id": "crfmn7zxaotd28gyy0dapo",
+      "deck": "JavaScript",
+      "questionText": "54",
+      "answer": "64"
+    },
+    "padl6vi9ipjkz5md71c1r": {
+      "id": "padl6vi9ipjkz5md71c1r",
+      "deck": "JavaScript",
+      "questionText": "3",
+      "answer": "W"
+    },
+    "kiozxr4tamkv453qa6y9e": {
+      "id": "kiozxr4tamkv453qa6y9e",
+      "deck": "React",
+      "questionText": "W",
+      "answer": "E"
+    },
+    "tb3bifu00ya7ikuc5hwsw": {
+      "id": "tb3bifu00ya7ikuc5hwsw",
+      "deck": "React",
+      "questionText": "E",
+      "answer": "W"
+    },
+    "4tva7d3b72mrp3wzvyflp": {
+      "id": "4tva7d3b72mrp3wzvyflp",
+      "deck": "JavaScript",
+      "questionText": "22",
+      "answer": "22"
+    },
+    "tumoclc6fbs2ir53sd9gl": {
+      "id": "tumoclc6fbs2ir53sd9gl",
+      "deck": "React",
+      "questionText": "2",
+      "answer": "W"
+    },
+    "vv70f6xbz8jf4lf6vnqlo": {
+      "id": "vv70f6xbz8jf4lf6vnqlo",
+      "deck": "React",
+      "questionText": "2",
+      "answer": "4"
+    },
+    "zra91ys0wenypon56824q": {
+      "id": "zra91ys0wenypon56824q",
+      "deck": "React",
+      "questionText": "3",
+      "answer": "3"
+    },
+    "hjmookl2lybmmesyrlhls": {
+      "id": "hjmookl2lybmmesyrlhls",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "4",
+      "answer": "4"
+    },
+    "gd7sm8blu6hnk72kwlzp7j": {
+      "id": "gd7sm8blu6hnk72kwlzp7j",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "4",
+      "answer": "5"
+    },
+    "u99kopydv9jf0gv2w6amoc": {
+      "id": "u99kopydv9jf0gv2w6amoc",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "54",
+      "answer": "54"
+    },
+    "v5sgmslmukgpfrva22dv5": {
+      "id": "v5sgmslmukgpfrva22dv5",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "R",
+      "answer": "R"
+    },
+    "fneqf18h3keoy8kwsfhzz": {
+      "id": "fneqf18h3keoy8kwsfhzz",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "R",
+      "answer": "R"
+    },
+    "mohfwyh17ijgtc40sy7y4": {
+      "id": "mohfwyh17ijgtc40sy7y4",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "3",
+      "answer": "3"
+    },
+    "bp6nyp7po3d3khulcolznt": {
+      "id": "bp6nyp7po3d3khulcolznt",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "W",
+      "answer": "W"
+    },
+    "iq1pq9omxucetrb51y9xqq": {
+      "id": "iq1pq9omxucetrb51y9xqq",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "W",
+      "answer": "W"
+    },
+    "f0cdhufe6okuik5eahhgck": {
+      "id": "f0cdhufe6okuik5eahhgck",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "W",
+      "answer": "W"
+    },
+    "k3z43gwm5ffyz7f78dt9bj": {
+      "id": "k3z43gwm5ffyz7f78dt9bj",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "S",
+      "answer": "S"
+    },
+    "s4afxyjs8qqk037evwjb": {
+      "id": "s4afxyjs8qqk037evwjb",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "2",
+      "answer": "W"
+    },
+    "d59k844q6ytclizyjqhqj": {
+      "id": "d59k844q6ytclizyjqhqj",
+      "deck": "React",
+      "questionText": "6eye",
+      "answer": "Yeyw"
+    },
+    "ax9pd2kd7sbwvgqbnm2ub": {
+      "id": "ax9pd2kd7sbwvgqbnm2ub",
+      "deck": "React",
+      "questionText": "Ywt",
+      "answer": "Gag"
+    },
+    "dcv2rletnbdhc1j3t456": {
+      "id": "dcv2rletnbdhc1j3t456",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Tsy",
+      "answer": "Ysy"
+    },
+    "csy6f4n9kf7fzyv6y9uiw6": {
+      "id": "csy6f4n9kf7fzyv6y9uiw6",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Ysy",
+      "answer": "5st"
+    },
+    "iumb4y2wltou7n6xr3eus": {
+      "id": "iumb4y2wltou7n6xr3eus",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Twt",
+      "answer": "Twt"
+    },
+    "xms1r6ebtec51jdu8es8l2": {
+      "id": "xms1r6ebtec51jdu8es8l2",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "W",
+      "answer": "W"
+    },
+    "992c8mw3x0cp7ib3frzbro": {
+      "id": "992c8mw3x0cp7ib3frzbro",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "E",
+      "answer": "E"
+    },
+    "linv7jynfhp36oenbnt20q": {
+      "id": "linv7jynfhp36oenbnt20q",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Tf",
+      "answer": "Tf"
+    },
+    "w3d2wxnmgerjmpllaqwyge": {
+      "id": "w3d2wxnmgerjmpllaqwyge",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "T",
+      "answer": "T"
+    },
+    "vtmakxlngeze5lbt8vr2f": {
+      "id": "vtmakxlngeze5lbt8vr2f",
+      "deck": "React",
+      "questionText": "F",
+      "answer": "F"
+    },
+    "0qkh4157ymvfdltxlxohe": {
+      "id": "0qkh4157ymvfdltxlxohe",
+      "deck": "React",
+      "questionText": "G",
+      "answer": "G"
+    },
+    "ca0u4evs8nmmb1725zqq2n": {
+      "id": "ca0u4evs8nmmb1725zqq2n",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Y",
+      "answer": "H"
+    },
+    "qd8qjhyc3ay02tflh7mos": {
+      "id": "qd8qjhyc3ay02tflh7mos",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "I",
+      "answer": "I"
+    },
+    "fdtf4o9kvh3wvv6enu4gu": {
+      "id": "fdtf4o9kvh3wvv6enu4gu",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "U",
+      "answer": "U"
+    },
+    "kntqz5ax2swz94b5i4cc": {
+      "id": "kntqz5ax2swz94b5i4cc",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "F",
+      "answer": "F"
+    },
+    "4auz3bu4cceug2lo9ln41q": {
+      "id": "4auz3bu4cceug2lo9ln41q",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "Y",
+      "answer": "Y"
+    },
+    "zxeng383fv19nljerkc49": {
+      "id": "zxeng383fv19nljerkc49",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "H",
+      "answer": "H"
+    },
+    "xpih9ghaojhvx765s2h0cr": {
+      "id": "xpih9ghaojhvx765s2h0cr",
+      "deck": "React",
+      "questionText": "R",
+      "answer": "R"
+    },
+    "g6kjvcx2b5g97jb6ie1fbg": {
+      "id": "g6kjvcx2b5g97jb6ie1fbg",
+      "deck": "React",
+      "questionText": "F",
+      "answer": "R"
+    },
+    "jrc67lxomxgi8uraax0xi": {
+      "id": "jrc67lxomxgi8uraax0xi",
+      "deck": "React",
+      "questionText": "R",
+      "answer": "R"
+    },
+    "30hdey4eqnb7tk4746765i": {
+      "id": "30hdey4eqnb7tk4746765i",
+      "deck": "React",
+      "questionText": "B",
+      "answer": "H"
+    },
+    "q1j97ognnvp5p9cxn6hl5e": {
+      "id": "q1j97ognnvp5p9cxn6hl5e",
+      "deck": "React",
+      "questionText": "G",
+      "answer": "G"
+    },
+    "8pbc1kkeqb6qn5qa8h7pxs": {
+      "id": "8pbc1kkeqb6qn5qa8h7pxs",
+      "deck": "React",
+      "questionText": "H",
+      "answer": "T"
+    },
+    "vjy1q07lkxgb9wxtk7m1ds": {
+      "id": "vjy1q07lkxgb9wxtk7m1ds",
+      "deck": "React",
+      "questionText": "Y",
+      "answer": "Y"
+    },
+    "76rcs5ql57lxmxvp3h1et": {
+      "id": "76rcs5ql57lxmxvp3h1et",
+      "deck": "React",
+      "questionText": "H",
+      "answer": "H"
+    },
+    "pgwaxaqfnbdkog16w52lqf": {
+      "id": "pgwaxaqfnbdkog16w52lqf",
+      "deck": "React",
+      "questionText": "U",
+      "answer": "U"
+    },
+    "40hscb0phdynn6lvr90qq": {
+      "id": "40hscb0phdynn6lvr90qq",
+      "deck": "React",
+      "questionText": "K",
+      "answer": "K"
+    },
+    "9xl08u7nu89nepqt3d5ffg": {
+      "id": "9xl08u7nu89nepqt3d5ffg",
+      "deck": "React",
+      "questionText": "6",
+      "answer": "7"
+    },
+    "xunjchzyq6j2c3wfr6gb8n": {
+      "id": "xunjchzyq6j2c3wfr6gb8n",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "R",
+      "answer": "R"
+    },
+    "ap4p6o4x6z5lhpjgxwo49": {
+      "id": "ap4p6o4x6z5lhpjgxwo49",
+      "deck": "2enrg46562qod365xr417k",
+      "questionText": "D",
+      "answer": "E"
+    },
+    "nue2nvddaj9kkbk5w31hhd": {
+      "id": "nue2nvddaj9kkbk5w31hhd",
+      "deck": "React",
+      "questionText": "F",
+      "answer": "F"
+    },
+    "n7fpi83j00gmzms3b5k0x": {
+      "id": "n7fpi83j00gmzms3b5k0x",
+      "deck": "React",
+      "questionText": "D",
+      "answer": "D"
+    },
+    "frqh4nr7kdqvopwsp2rsy": {
+      "id": "frqh4nr7kdqvopwsp2rsy",
+      "deck": "React",
+      "questionText": "F",
+      "answer": "F"
+    },
+    "6v69pjofk0i4sykqpa5zjg": {
+      "id": "6v69pjofk0i4sykqpa5zjg",
+      "deck": "React",
+      "questionText": "H",
+      "answer": "H"
+    }
   },
-  "React": {
-    "id": "React",
-    "title": "React",
-    "totalQuestions": 2,
-    "questions": [
-      "question1",
-      "question2",
-      "mrtwv2hvl1l29x89m3fu",
-      "r7oxfyivy5chwrek025rmb"
-    ]
+  "decks": {
+    "JavaScript": {
+      "id": "JavaScript",
+      "title": "JavaScript",
+      "totalQuestions": 1,
+      "questions": [
+        "question3"
+      ]
+    },
+    "2enrg46562qod365xr417k": {
+      "id": "2enrg46562qod365xr417k",
+      "title": "3",
+      "totalQuestions": 0,
+      "questions": []
+    },
+    "React": {
+      "id": "React",
+      "title": "React",
+      "totalQuestions": 2,
+      "questions": [
+        "question1",
+        "question2",
+        "frqh4nr7kdqvopwsp2rsy",
+        "6v69pjofk0i4sykqpa5zjg",
+        "gjo2vpfx7ct6wl8nbkjwu"
+      ]
+    }
   }
 }

@@ -125,18 +125,11 @@ export function _saveNewDeck(deck) {
   })
 }
 
-export function _updateDeck(data) {
-  const { deckId, questionId } = data
-  console.log("_updateDeck: " + deckId + "/" + questionId)
+export function _updateDeck(decks) {
+  //const { deckId, questionId, decks } = info
+  console.log("_updateDeck -> " + JSON.stringify(decks))
   return new Promise((res, rej) => {
-    AsyncStorage.getItem(DECKS_STORAGE_KEY)
-      .then((results) => {
-        const data = JSON.parse(results)
-        console.log("_updateDeckResults: " + JSON.stringify(data[deckId].questions))
-        data[deckId].questions.concat([questionId])
-        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
-      })
-      res(data)
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
   })
 }
 

@@ -36,18 +36,25 @@ export function handleAddDeck (title){
 }
 
 export function handlDeckAppendQuestionId(deckId,questionId){
-    console.log("actions->decks->handlDeckAppendQuestionId-> " + deckId  + "/ "+ questionId)
     return (dispatch, getState)=>{
-        return updateDeck({
-            deckId,
-            questionId
-        }).then(()=>{
-            console.log("Some more logging")
+
+        new Promise((res,rej)=>{
             dispatch(deckAppendQuestionId(deckId,questionId))
+            let decks = getState()['decks']
+            console.log("Decks => " + JSON.stringify(decks))
+            updateDeck(decks)
+            res("ok")
         })
+
+        // return updateDeck({
+        //     deckId,
+        //     questionId,
+        // }).then(()=>{
+        //     console.log("Some more logging")
+        //     dispatch(deckAppendQuestionId(deckId,questionId))
+        // }) .then (()=>{
             
-                console.log("actionsInnerDispatch->decks->handlDeckAppendQuestionId-> " + deckId  + "/ "+ questionId)
-               // dispatch(deckAppendQuestionId(deckId,questionId))
-           
+        //     console.log("Get state => " + JSON.stringify( getState()['decks']))
+        // })
     }
 }
