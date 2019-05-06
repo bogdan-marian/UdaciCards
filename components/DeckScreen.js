@@ -38,9 +38,7 @@ class DeckScreen extends Component {
     }else{
       console.log("Time to navigate")
       navigate('Quiz',{
-        deckId:'',
-        goodOnes:[],
-        badOnes:[]
+        deckId:this.state.deck['id'],
       })
     }
   }
