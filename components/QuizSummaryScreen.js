@@ -11,7 +11,25 @@ class QuizSummaryScreen extends Component{
   state = {
     deckId: this.props.navigation.getParam('deckId'),
     goodOnes: this.props.navigation.getParam('goodOnes'),
-    badOnes: this.props.navigation.getParam('badOnes')
+    badOnes: this.props.navigation.getParam('badOnes'),
+    quizResetCallBack: this.props.navigation.getParam('quizResetCallBack')
+  }
+  componentDidUpdate(){
+    this.state.quizResetCallBack()
+  }
+
+  handleRestartQuiz(){
+    const {navigate} = this.props.navigation;
+    this.state.quizResetCallBack()
+    //no need to set parameters
+    navigate('Quiz')
+  }
+
+  handleBackToDeck(){
+    const {navigate} = this.props.navigation;
+    this.state.quizResetCallBack()
+    //no need to set parameters
+    navigate('Deck')
   }
 
   render(){
@@ -27,10 +45,11 @@ class QuizSummaryScreen extends Component{
         <Text>Bad answers: {this.state.badOnes.length}</Text>
         <Button 
           title="Restart Quiz"
-          onPress={()=>navigate('Quiz',{
-            deckId:this.state.deckId,
-            reset:true
-          })}
+          onPress={()=>this.handleRestartQuiz()}
+        />
+        <Button 
+          title="Back to Deck"
+          onPress={()=>this.handleBackToDeck()}
         />
       </View>
     )

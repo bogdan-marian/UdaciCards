@@ -62,7 +62,9 @@ class QuizScreen extends Component {
   }
 
   quizResetCallBack = () => {
-    console.log("Quiz reset callBack")
+    let goodOnes = []
+    let badOnes = []
+    this.setState({goodOnes,badOnes})
   }
 
   componentDidUpdate(){
@@ -76,7 +78,8 @@ class QuizScreen extends Component {
       navigate ('QuizSummary',{
         deckId:this.state.deckId,
         goodOnes:this.state.goodOnes,
-        badOnes:this.state.badOnes
+        badOnes:this.state.badOnes,
+        quizResetCallBack:this.quizResetCallBack
       })
     }
   }
