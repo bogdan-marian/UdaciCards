@@ -3,11 +3,16 @@ import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 
 class QuizScreen extends Component {
+  static navigationOptions = {
+    title: 'Quiz In Progress',
+  };
+
   state = {
     deckId: this.props.navigation.getParam('deckId'),
     questionIds: this.getQuestionIds(this.props.navigation.getParam('deckId')),
     goodOnes: [],
-    badOnes: []
+    badOnes: [],
+    showAnswer: false
   }
 
   getTotal(deckId) {
@@ -17,6 +22,12 @@ class QuizScreen extends Component {
   getQuestionIds(deckId) {
     let deck = this.props.decks[deckId]
     return deck.questions
+  }
+
+  getRmainingQuestions(){
+    let total = this.state.questionIds.length
+    let remaining = this.state.goodOnes.length + this.state.badOnes.length
+    return total - remaining
   }
 
   getCurrentQuestionId() {
@@ -37,6 +48,16 @@ class QuizScreen extends Component {
     }
   }
 
+  getCurrentAnswer(){
+    let id = this.getCurrentQuestionId()
+    let question = this.props.questions[id]
+    if (question) {
+      return question['answer']
+    } else {
+      return ''
+    }
+  }
+
   //handle one more (you know for debug)
   logStatus() {
     let { goodOnes, deckId } = this.state;
@@ -49,14 +70,16 @@ class QuizScreen extends Component {
 
   handleCorrect() {
     let goodOnes = [...this.state.goodOnes, this.getCurrentQuestionId()]
-    this.setState({ goodOnes })
+    let showAnswer = false
+    this.setState({ goodOnes, showAnswer })
     this.logStatus()
     //this.navigateIfAllQuestions()
   }
 
   handleIncorrect() {
     let badOnes = [...this.state.badOnes, this.getCurrentQuestionId()]
-    this.setState({ badOnes })
+    let showAnswer = false
+    this.setState({ badOnes, showAnswer })
     this.logStatus()
     //this.navigateIfAllQuestions()
   }
@@ -64,23 +87,57 @@ class QuizScreen extends Component {
   quizResetCallBack = () => {
     let goodOnes = []
     let badOnes = []
-    this.setState({goodOnes,badOnes})
+    this.setState({ goodOnes, badOnes })
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.navigateIfAllQuestions()
   }
 
-  navigateIfAllQuestions(){
+  navigateIfAllQuestions() {
     let answers = [...this.state.goodOnes, ...this.state.badOnes]
-    let {navigate} = this.props.navigation
-    if (answers.length  === this.state.questionIds.length){
-      navigate ('QuizSummary',{
-        deckId:this.state.deckId,
-        goodOnes:this.state.goodOnes,
-        badOnes:this.state.badOnes,
-        quizResetCallBack:this.quizResetCallBack
+    let { navigate } = this.props.navigation
+    if (answers.length === this.state.questionIds.length) {
+      navigate('QuizSummary', {
+        deckId: this.state.deckId,
+        goodOnes: this.state.goodOnes,
+        badOnes: this.state.badOnes,
+        quizResetCallBack: this.quizResetCallBack
       })
+    }
+  }
+
+  handleShowAnswer() {
+    let showAnswer = true
+    this.setState({ showAnswer })
+  }
+
+  renderShowAnswer() {
+    if (!this.state.showAnswer) {
+      return (
+        <Button
+          title="Show Answer"
+          onPress={() => this.handleShowAnswer()}
+        />
+      )
+    }
+  }
+
+  renderAnswer() {
+    if (this.state.showAnswer) {
+      return (
+        <View>
+          <Text>{this.getCurrentAnswer()}</Text>
+          <Button
+            title="Correct"
+            onPress={() => this.handleCorrect()}
+          />
+          <Button
+            title="Incorrect"
+            onPress={() => this.handleIncorrect()}
+          />
+        </View>
+      )
     }
   }
 
@@ -88,17 +145,10 @@ class QuizScreen extends Component {
     console.log("id list => " + this.state.questionIds)
     return (
       <View>
-        <Text>Hello from quiz screen</Text>
-        <Text>{this.getCurrentQuestionId()}</Text>
+        <Text>Remaining questions: {this.getRmainingQuestions()}</Text>
         <Text>{this.getCurrentQuestionText()}</Text>
-        <Button
-          title="Correct"
-          onPress={() => this.handleCorrect()}
-        />
-        <Button
-          title="Incorrect"
-          onPress={() => this.handleIncorrect()}
-        />
+        {this.renderShowAnswer()}
+        {this.renderAnswer()}
       </View>
     )
   }
