@@ -14,6 +14,7 @@ import { Provider, connect } from 'react-redux'
 import reducer from './reducers'
 import { handleInitialData } from './actions/shared'
 import middleware from './middleware'
+import QuizSummaryScreen from './components/QuizSummaryScreen';
 
 const HelloNavigator = createStackNavigator({
   Hello: HelloScreen
@@ -25,7 +26,8 @@ const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
   Deck: DeckScreen,
   QuestionCreate: QuestionCreateScreen,
-  Quiz: QuizScreen
+  Quiz: QuizScreen,
+  QuizSummary: QuizSummaryScreen
 })
 
 UdacyNavigator.navigationOptions = ({ navigation }) => {

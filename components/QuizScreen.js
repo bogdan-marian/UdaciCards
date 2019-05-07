@@ -49,12 +49,36 @@ class QuizScreen extends Component {
 
   handleCorrect() {
     let goodOnes = [...this.state.goodOnes, this.getCurrentQuestionId()]
-    let answers = [...goodOnes, ...this.state.badOnes]
     this.setState({ goodOnes })
-    if (answers.length === this.state.questionIds.length) {
-      console.log("Time to show sumary")
-    }
     this.logStatus()
+    //this.navigateIfAllQuestions()
+  }
+
+  handleIncorrect() {
+    let badOnes = [...this.state.badOnes, this.getCurrentQuestionId()]
+    this.setState({ badOnes })
+    this.logStatus()
+    //this.navigateIfAllQuestions()
+  }
+
+  quizResetCallBack = () => {
+    console.log("Quiz reset callBack")
+  }
+
+  componentDidUpdate(){
+    this.navigateIfAllQuestions()
+  }
+
+  navigateIfAllQuestions(){
+    let answers = [...this.state.goodOnes, ...this.state.badOnes]
+    let {navigate} = this.props.navigation
+    if (answers.length  === this.state.questionIds.length){
+      navigate ('QuizSummary',{
+        deckId:this.state.deckId,
+        goodOnes:this.state.goodOnes,
+        badOnes:this.state.badOnes
+      })
+    }
   }
 
   render() {
@@ -65,8 +89,12 @@ class QuizScreen extends Component {
         <Text>{this.getCurrentQuestionId()}</Text>
         <Text>{this.getCurrentQuestionText()}</Text>
         <Button
-          title="Go"
+          title="Correct"
           onPress={() => this.handleCorrect()}
+        />
+        <Button
+          title="Incorrect"
+          onPress={() => this.handleIncorrect()}
         />
       </View>
     )
