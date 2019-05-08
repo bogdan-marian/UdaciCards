@@ -16,6 +16,7 @@ import { handleInitialData } from './actions/shared'
 import middleware from './middleware'
 import QuizSummaryScreen from './components/QuizSummaryScreen';
 import { setLocalNotification } from './utils/helpers';
+import DeckV2Screen from './components/DeckV2Screen';
 
 const HelloNavigator = createStackNavigator({
   Hello: HelloScreen
@@ -25,7 +26,8 @@ const HelloNavigator = createStackNavigator({
 
 const UdacyNavigator = createStackNavigator({
   Decks: DecksScreen,
-  Deck: DeckScreen,
+  Deck: DeckV2Screen,
+  //Deck: DeckScreen,
   QuestionCreate: QuestionCreateScreen,
   Quiz: QuizScreen,
   QuizSummary: QuizSummaryScreen

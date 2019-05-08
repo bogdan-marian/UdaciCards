@@ -34,7 +34,7 @@ class DecksScreen extends Component {
           renderItem={({ item }) =>
             <TouchableOpacity
               style={styles.flatview}
-              onPress={()=> this.props.navigation.navigate('Deck',{ item:item})}
+              onPress={()=> this.props.navigation.navigate('Deck',{ deckId:item.id})}
             >
               <Text style={styles.deck}>Deck: {item.title}</Text>
               <Text style={styles.total}>({item.questions.length} cards)</Text>

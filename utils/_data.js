@@ -101,9 +101,9 @@ export function _saveNewQuestion(question) {
   })
 }
 
-function newDeckObject({ title }) {
+function newDeckObject({ title, deckId }) {
   const myDeck = {
-    id: generateUID(),
+    id: deckId,
     title,
     totalQuestions: 0,
     questions: []

@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { handleAddDeck } from '../actions/decks'
+import { generateUID } from '../utils/helpers';
 
 class DeckCreateScreen extends Component {
   state = {
+    deckId:'',
     key: '',
     title: '',
     timeToNavigate: false
@@ -17,7 +19,7 @@ class DeckCreateScreen extends Component {
   componentDidUpdate() {
     const { navigate } = this.props.navigation
     if (this.state.timeToNavigate) {
-      navigate('Decks')
+      navigate('Deck', { deckId:this.state.deckId})
     }
   }
 
@@ -27,33 +29,23 @@ class DeckCreateScreen extends Component {
 
   handleSubmit = () => {
     const { key, title } = this.state
-    let { dispatch, decks } = this.props
-    console.log("Handle submit: " + JSON.stringify(decks))
+    const { dispatch } = this.props
+    let deckId = generateUID()
 
-    let oldCount = Object.keys( decks).length
-    console.log("Old count " + oldCount)
-    
-    dispatch(handleAddDeck(title))
-    (function checkAgain(){
-      let{decks} = this.props
-      let newCount = Object.keys( decks).length
-      console.log("Check again")
-      if (oldCount === newCount){
-        setTimeout(checkAgain, 500)
-      }
-    })()
+    dispatch(handleAddDeck(title, deckId))
 
 
     //submitEntry({ key, entry })
     if (this.state.title ) {
-
-      // this.setState(() => ({
-      //   key: '',
-      //   title: '',
-      //   timeToNavigate: true
-      // }))
+      this.setState(() => ({
+        deckId:deckId,
+        key: '',
+        title: '',
+        timeToNavigate: true
+      }))
     }
   }
+
 
   render() {
 

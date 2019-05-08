@@ -28,9 +28,9 @@ export function deckAppendQuestionId(deckId, questionId){
     }
 }
 
-export function handleAddDeck (title){
+export function handleAddDeck (title, deckId){
     return (dispatch, getState)=>{
-        return saveDeck({title})
+        return saveDeck({title, deckId})
             .then((deck)=>dispatch(addDeck(deck)))
     }
 }
