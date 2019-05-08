@@ -27,16 +27,19 @@ class DeckCreateScreen extends Component {
 
   handleSubmit = () => {
     const { key, title } = this.state
-    const { dispatch } = this.props
+    let { dispatch, decks } = this.props
+    console.log("Handle submit: " + JSON.stringify(decks))
 
-    let oldCount = Object.keys( this.props.decks).length
+    let oldCount = Object.keys( decks).length
+    console.log("Old count " + oldCount)
     
     dispatch(handleAddDeck(title))
     let newCoutn = Object.keys( this.props.decks).length
     (function checkAgain(){
+      let{decks} = this.props
+      let newCount = Object.keys( decks).length
       console.log("Check again")
-      let newCoutn = Object.keys( this.props.decks).length 
-      if (oldCount < newCoutn){
+      if (oldCount === newCount){
         setTimeout(checkAgain, 500)
       }
     })()
