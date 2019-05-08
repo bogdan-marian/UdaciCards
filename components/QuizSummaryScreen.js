@@ -49,7 +49,7 @@ class QuizSummaryScreen extends Component{
         />
         <Button 
           title="Back to Deck"
-          onPress={()=>this.handleBackToDeck('Deck')}
+          onPress={()=>this.handleEndOfQuiz('Deck')}
         />
       </View>
     )
