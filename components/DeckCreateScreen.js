@@ -29,16 +29,27 @@ class DeckCreateScreen extends Component {
     const { key, title } = this.state
     const { dispatch } = this.props
 
+    let oldCount = Object.keys( this.props.decks).length
+    
     dispatch(handleAddDeck(title))
+    let newCoutn = Object.keys( this.props.decks).length
+    (function checkAgain(){
+      console.log("Check again")
+      let newCoutn = Object.keys( this.props.decks).length 
+      if (oldCount < newCoutn){
+        setTimeout(checkAgain, 500)
+      }
+    })()
 
 
     //submitEntry({ key, entry })
     if (this.state.title ) {
-      this.setState(() => ({
-        key: '',
-        title: '',
-        timeToNavigate: true
-      }))
+
+      // this.setState(() => ({
+      //   key: '',
+      //   title: '',
+      //   timeToNavigate: true
+      // }))
     }
   }
 
@@ -76,8 +87,9 @@ class DeckCreateScreen extends Component {
 
 }
 
-function mapStateToProps() {
+function mapStateToProps({decks}) {
   return {
+    decks
   }
 }
 
