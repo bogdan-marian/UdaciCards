@@ -1,8 +1,8 @@
 import React from 'react'
-import { View , AsyncStorage} from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { white } from './colors'
-import {Notifications, Permissions} from 'expo'
+import { Notifications, Permissions } from 'expo'
 
 export const NOTIFICATION_KEY = 'UdaciCards:notifications'
 
@@ -32,50 +32,60 @@ export function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export function createNotification(){
+export function createNotification() {
   return {
-    title:'Time to study',
+    title: 'Time to study',
     body: "Don't forget to study today!",
-    ios:{
-      sound:true
+    ios: {
+      sound: true
     },
-    android:{
-      sound:true,
-      priority:'high',
-      sticky:false,
-      vibrate:true
+    android: {
+      sound: true,
+      priority: 'high',
+      sticky: false,
+      vibrate: true
     }
   }
 }
 
-export function setLocalNotification(){
+export function setLocalNotification() {
+  console.log("setLocalNotification")
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
-      if (data === null){
+      if (data === null) {
+        console.log("no data time to set notification")
         Permissions.askAsync(Permissions.NOTIFICATIONS)
-          .then((status) => {
-            if (status === 'granted'){
+          .then((pStatus) => {
+            if (pStatus.status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync()
-              let today = new Date()
-              today.setHours(20)
-              today.setMinutes(0)
+
+              let tomorrow = new Date()
+              tomorrow.setDate(tomorrow.getDate() + 1)
+              tomorrow.setHours(20)
+              tomorrow.setMinutes(0)
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
                 {
-                  time:today,
-                  repeat:'day'
+                  time: tomorrow,
+                  repeat: 'day'
                 }
               )
-              AsyncStorage.setItem(NOTIFICATION_KEY,JSON.stringify(ture))
+              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+                .then(() => { console.log("finished setLocalNotification  for " + JSON.stringify(tomorrow)) })
+            } else {
+              console.log("nothing to do User decided for no notifications" + JSON.stringify(pStatus))
             }
           })
       }
     })
+
+
 }
 
-export function clearLocalNotification(){
+export function clearLocalNotification() {
+  console.log('cleared previous notification')
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
-   .then(Notifications.cancelAllScheduledNotificationsAsync())
+    .then(Notifications.cancelAllScheduledNotificationsAsync())
 }
 

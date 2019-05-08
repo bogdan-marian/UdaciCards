@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizScreen extends Component {
   static navigationOptions = {
@@ -98,6 +99,8 @@ class QuizScreen extends Component {
     let answers = [...this.state.goodOnes, ...this.state.badOnes]
     let { navigate } = this.props.navigation
     if (answers.length === this.state.questionIds.length) {
+      clearLocalNotification()
+      .then(setLocalNotification())
       navigate('QuizSummary', {
         deckId: this.state.deckId,
         goodOnes: this.state.goodOnes,

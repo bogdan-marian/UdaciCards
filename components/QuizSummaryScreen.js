@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuizSummaryScreen extends Component{
 
@@ -18,18 +19,10 @@ class QuizSummaryScreen extends Component{
     this.state.quizResetCallBack()
   }
 
-  handleRestartQuiz(){
+  handleEndOfQuiz(screen){
     const {navigate} = this.props.navigation;
     this.state.quizResetCallBack()
-    //no need to set parameters
-    navigate('Quiz')
-  }
-
-  handleBackToDeck(){
-    const {navigate} = this.props.navigation;
-    this.state.quizResetCallBack()
-    //no need to set parameters
-    navigate('Deck')
+    navigate(screen)
   }
 
   render(){
@@ -45,11 +38,11 @@ class QuizSummaryScreen extends Component{
         <Text>Bad answers: {this.state.badOnes.length}</Text>
         <Button 
           title="Restart Quiz"
-          onPress={()=>this.handleRestartQuiz()}
+          onPress={()=>this.handleEndOfQuiz('Quiz')}
         />
         <Button 
           title="Back to Deck"
-          onPress={()=>this.handleBackToDeck()}
+          onPress={()=>this.handleBackToDeck('Deck')}
         />
       </View>
     )

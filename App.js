@@ -15,6 +15,7 @@ import reducer from './reducers'
 import { handleInitialData } from './actions/shared'
 import middleware from './middleware'
 import QuizSummaryScreen from './components/QuizSummaryScreen';
+import { setLocalNotification } from './utils/helpers';
 
 const HelloNavigator = createStackNavigator({
   Hello: HelloScreen
@@ -63,7 +64,9 @@ const store = createStore(reducer, middleware)
 
 class App extends React.Component {
   componentDidMount() {
+    setLocalNotification()
     store.dispatch(handleInitialData())
+    
   }
 
   render() {
