@@ -34,7 +34,6 @@ class DeckCreateScreen extends Component {
     console.log("Old count " + oldCount)
     
     dispatch(handleAddDeck(title))
-    let newCoutn = Object.keys( this.props.decks).length
     (function checkAgain(){
       let{decks} = this.props
       let newCount = Object.keys( decks).length
