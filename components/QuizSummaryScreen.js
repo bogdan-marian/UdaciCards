@@ -13,7 +13,8 @@ class QuizSummaryScreen extends Component{
     deckId: this.props.navigation.getParam('deckId'),
     goodOnes: this.props.navigation.getParam('goodOnes'),
     badOnes: this.props.navigation.getParam('badOnes'),
-    quizResetCallBack: this.props.navigation.getParam('quizResetCallBack')
+    quizResetCallBack: this.props.navigation.getParam('quizResetCallBack'),
+    
   }
   componentDidUpdate(){
     this.state.quizResetCallBack()
@@ -24,15 +25,21 @@ class QuizSummaryScreen extends Component{
     this.state.quizResetCallBack()
     navigate(screen)
   }
+  
+  getDeckTitle(){
+    let {decks} = this.props
+    return decks[this.state.deckId]['title']
+  }
 
   render(){
     let total = [...this.state.goodOnes, ...this.state.badOnes]
     const {navigate} = this.props.navigation;
-
+    
+    {console.log("deck info => " + JSON.stringify(this.getDeckTitle()))}
     return (
       <View>
         <Text>Congratulations for compleating a study session.</Text>
-        <Text>Deck id: {this.state.deckId}</Text>
+        <Text>Deck: {this.getDeckTitle()}</Text>
         <Text>Total quiz questions: {total.length}</Text>
         <Text>Good answers: {this.state.goodOnes.length}</Text>
         <Text>Bad answers: {this.state.badOnes.length}</Text>
